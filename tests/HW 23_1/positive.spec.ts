@@ -1,0 +1,28 @@
+import { test, expect } from '@playwright/test';
+import { RegistrationPage } from './methods.js';
+
+let name, lastName, email, password, repeatPassword;
+
+name = 'Nick';
+lastName = 'Jonson';
+email = 'aqa-some12345678@test.com';
+password = 'Password123';
+repeatPassword = password;
+
+test.describe('Positive Registration Tests', () => {
+    test('Successful user registration', async ({ page }) => {
+        const registrationPage = new RegistrationPage(page);
+        
+        await registrationPage.goto();
+        await registrationPage.openRegistrationForm();
+        await registrationPage.checkRegistrationFormIsOpen();
+        await registrationPage.isRegisterButtonDisabled();
+        await registrationPage.fillName(name);
+        await registrationPage.fillLastName(lastName);
+        await registrationPage.fillEmail(email);
+        await registrationPage.fillPassword(password);
+        await registrationPage.fillRepeatPassword(repeatPassword);
+        await registrationPage.sendRegistrationForm();
+        await registrationPage.checkURL('https://qauto.forstudy.space/panel/garage');
+    });
+});
