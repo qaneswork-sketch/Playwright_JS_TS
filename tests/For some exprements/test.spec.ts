@@ -1,11 +1,14 @@
 import { test, expect } from '@playwright/test';
-import { Visit } from './methods.js';
+import { LoginPage } from './methods.js';
 
-test('has title', async ({ page }) => {
-  const visit = new Visit(page);
-          
-    await visit.goto();
+test('Login', async({page})=>{
+	const user = {
+		username: "John",
+		password: "some password"
+	}
+  const loginPage = new LoginPage(page);
+  await loginPage.open();
+  await loginPage.login(user.username, user.password);
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Hillel Qauto/);
-});
+  // Додаткові кроки тестування на сторінці після входу 
+})
