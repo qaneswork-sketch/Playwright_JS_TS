@@ -25,7 +25,7 @@ export class RegistrationPage {
 
 
     async goto() {
-        await this.page.goto('/');
+        await this.page.goto('https://guest:welcome2qauto@qauto.forstudy.space');
     }
 
     async openRegistrationForm() {

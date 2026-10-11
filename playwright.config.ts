@@ -1,4 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+dotenv.config();
 
 /**
  * Read environment variables from file.
@@ -28,12 +30,27 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
 
+    baseURL: process.env.PROD_URL,
+
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
 
   /* Configure projects for major browsers */
   projects: [
+    {
+      name: 'PROD',
+      use: {
+        baseURL: process.env.PROD_URL,
+      },
+    },
+    {
+      name: 'QA',
+      use: {
+        baseURL: process.env.QA_URL,
+      },
+    },
+
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
