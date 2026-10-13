@@ -21,6 +21,7 @@
   "homepage": "https://github.com/qaneswork-sketch/Playwright_JS_TS#readme",
   "devDependencies": {
     "@playwright/test": "^1.63.0",
+    "@testomatio/reporter": "^2.19.0",
     "@types/node": "^26.6.4"
   },
   "dependencies": {
